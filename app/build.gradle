@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
-
+    useLibrary  'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.locdle.currencies"
         minSdkVersion 15
@@ -23,4 +23,10 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
+//    compile group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'
+//    compile 'org.apache.httpcomponents:httpclient:4.5.2'
+//    compile 'net.adamcin.granite:granite-client-packman:0.7.6'
+    compile "org.apache.httpcomponents:httpmime:4.2.3"
+
+
 }
