@@ -10,14 +10,10 @@
         android:layout_weight="20"
         android:orientation="vertical">
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_weight="30"
-            android:gravity="bottom"
             android:text="Foreign Currency"
-            android:textColor="#ff22e9ff"/>
+            android:textColor="#ff22e9ff"
+            style="@style/label" />
         <Spinner
             android:id="@+id/spn_for"
             android:layout_width="fill_parent"
@@ -27,15 +23,9 @@
             android:layout_weight="55"
             android:gravity="top"/>
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="15"
-            android:gravity="bottom"
             android:text="Enter foreign currency amount here:"
-            android:textColor="#666"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            style="@style/label.currency" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
@@ -55,7 +45,7 @@
             android:digits="0123456789."
             android:gravity="center_vertical"
             android:inputType="numberDecimal"
-            android:textColor="#FFF"
+            android:textColor="#@color/white"
             android:textSize="30sp">
             <requestFocus/>
         </EditText>
@@ -75,14 +65,10 @@
         android:layout_weight="20"
         android:orientation="vertical">
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_weight="30"
-            android:gravity="bottom"
             android:text="Home Currency"
-            android:textColor="#ff22e9ff"/>
+            android:textColor="#ff22e9ff"
+            style="@style/label" />
         <Spinner
             android:id="@+id/spn_hom"
             android:layout_width="fill_parent"
@@ -92,15 +78,9 @@
             android:layout_weight="55"
             android:gravity="top"/>
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="15"
-            android:gravity="bottom"
             android:text="Calculated result in home currency:"
-            android:textColor="#666"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            style="@style/label.currency" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
