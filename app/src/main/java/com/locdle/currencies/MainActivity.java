@@ -1,5 +1,10 @@
 package com.locdle.currencies;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ButtonBarLayout;
@@ -24,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<String> arrayList = (ArrayList<String>) getIntent().getSerializableExtra("key_arraylist");
+        ArrayList<String> arrayList = (ArrayList<String>) getIntent().getSerializableExtra(SplashActivity.KEY_ARRAYLIST);
         Collections.sort(arrayList);
         mCurrency = arrayList.toArray(new String [arrayList.size()]);
 
@@ -41,14 +46,42 @@ public class MainActivity extends AppCompatActivity {
         switch (id){
             case R.id.mnu_invert:
                 //TODO define behavior here
+                invertCurrencies();
                 break;
             case R.id.mnu_codes:
                 //TODO define behavior here
+                launchBrowser(SplashActivity.URL_CODES);
                 break;
             case R.id.mnu_exit:
                 finish();
                 break;
         }
         return true;
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager)
+                        getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
+    }
+    private void launchBrowser(String strUri) {
+        if (isOnline()) {
+            Uri uri = Uri.parse(strUri);
+            //call an implicit intent
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        }
+    }
+    private void invertCurrencies() {
+        int nFor = mForSpinner.getSelectedItemPosition();
+        int nHom = mHomeSpinner.getSelectedItemPosition();
+        mForSpinner.setSelection(nHom);
+        mHomeSpinner.setSelection(nFor);
+        mConverterTextView.setText("");
     }
 }

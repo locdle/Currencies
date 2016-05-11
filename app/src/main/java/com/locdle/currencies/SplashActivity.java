@@ -19,6 +19,7 @@ public class SplashActivity extends Activity {
     public static final String URL_CODES = "http://openexchangerates.org/api/currencies.json";
     //ArrayList of currencies that will be fetched and passed into MainActivity
     private ArrayList<String> mCurrencies = new ArrayList<>();
+    public static final String KEY_ARRAYLIST = "key_arraylist";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class SplashActivity extends Activity {
     }
     private class FetchCodesTask extends AsyncTask<String, Void, JSONObject> {
 
-        public static final String KEY_ARRAYLIST = "key_arraylist";
+
 
         @Override
         protected JSONObject doInBackground(String... params) {
