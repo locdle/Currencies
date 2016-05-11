@@ -3,6 +3,7 @@ package com.locdle.currencies;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ButtonBarLayout;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -32,5 +33,22 @@ public class MainActivity extends AppCompatActivity {
         mCalcuationButton = (Button) findViewById(R.id.btn_calc);
         mForSpinner = (Spinner) findViewById(R.id.spn_for);
         mHomeSpinner = (Spinner) findViewById(R.id.spn_hom);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.mnu_invert:
+                //TODO define behavior here
+                break;
+            case R.id.mnu_codes:
+                //TODO define behavior here
+                break;
+            case R.id.mnu_exit:
+                finish();
+                break;
+        }
+        return true;
     }
 }
