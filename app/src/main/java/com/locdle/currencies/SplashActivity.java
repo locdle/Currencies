@@ -3,7 +3,7 @@ package com.locdle.currencies;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.Toast;
@@ -18,7 +18,7 @@ public class SplashActivity extends Activity {
     //url to currency codes used in this application
     public static final String URL_CODES = "http://openexchangerates.org/api/currencies.json";
     //ArrayList of currencies that will be fetched and passed into MainActivity
-    private ArrayList<String> mCurrencies;
+    private ArrayList<String> mCurrencies = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,8 @@ public class SplashActivity extends Activity {
                     throw new JSONException("no data available.");
                 }
                 Iterator iterator = jsonObject.keys();
-                String key = "";
-                mCurrencies = new ArrayList<String>();
+                String key;
+//                mCurrencies = new ArrayList<String>();
                 while (iterator.hasNext()) {
                     key = (String)iterator.next();
                     mCurrencies.add(key + " | " + jsonObject.getString(key));
