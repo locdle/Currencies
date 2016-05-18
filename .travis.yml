@@ -26,7 +26,7 @@ android:
      - platform-tools
      - tools
 # The BuildTools version we are using for our project
-     - build-tools-23.0.3
+     - build-tools-23
 # System Image we use to run emulator(s) during tests
      - sys-img-armeabi-v7a-android-23
 
