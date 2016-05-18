@@ -17,8 +17,6 @@ import java.util.Iterator;
 public class SplashActivity extends Activity {
     //url to currency codes used in this application
     public static final String URL_CODES = "http://openexchangerates.org/api/currencies.json";
-    //ArrayList of currencies that will be fetched and passed into MainActivity
-    private ArrayList<String> mCurrencies = new ArrayList<>();
     public static final String KEY_ARRAYLIST = "key_arraylist";
 
     @Override
@@ -28,15 +26,12 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_splash);
         new FetchCodesTask().execute(URL_CODES);
     }
+
     private class FetchCodesTask extends AsyncTask<String, Void, JSONObject> {
-
-
-
         @Override
         protected JSONObject doInBackground(String... params) {
             return new JSONParser().getJSONFromUrl(params[0]);
         }
-
         @Override
         protected void onPostExecute(JSONObject jsonObject) {
             try {
@@ -44,8 +39,8 @@ public class SplashActivity extends Activity {
                     throw new JSONException("no data available.");
                 }
                 Iterator iterator = jsonObject.keys();
-                String key;
-//                mCurrencies = new ArrayList<String>();
+                String key ;
+                ArrayList<String> mCurrencies = new ArrayList<>();
                 while (iterator.hasNext()) {
                     key = (String)iterator.next();
                     mCurrencies.add(key + " | " + jsonObject.getString(key));
