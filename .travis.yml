@@ -19,7 +19,7 @@ env:
 
 before_install:
 # Making sure gradlew has executable permissions
-    - chmod +x gradlew
+#    - chmod +x gradlew
 
 android:
   components:
