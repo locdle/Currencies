@@ -2,7 +2,6 @@ package com.locdle.currencies;
 import android.util.Log;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
@@ -11,18 +10,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 /**
- * Created by charper on 5/10/2016.
+ * Created by locle on 5/10/2016.
  */
 public class JSONParser {
     static InputStream sInputStream = null;
     static JSONObject sReturnJsonObject = null;
     static String sRawJsonString = "";
-
-    public JSONParser() {
-    }
-
+    public JSONParser() {}
     public JSONObject getJSONFromUrl(String url) {
         //attempt to get response from server
         try {
@@ -31,10 +26,6 @@ public class JSONParser {
             HttpResponse httpResponse = httpClient.execute(httpPost);
             HttpEntity httpEntity = httpResponse.getEntity();
             sInputStream = httpEntity.getContent();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -43,11 +34,10 @@ public class JSONParser {
             BufferedReader reader = new BufferedReader(new InputStreamReader(
                     sInputStream, "iso-8859-1"), 8);
             StringBuilder stringBuilder = new StringBuilder();
-            String line = null;
+            String line ;
             while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line + "\n");
-            }
-            sInputStream.close();
+                stringBuilder.append(line).append("\n");
+            }sInputStream.close();
             sRawJsonString = stringBuilder.toString();
         } catch (Exception e) {
             Log.e("Error from Buffer: " + e.toString(), this.getClass().getSimpleName());
