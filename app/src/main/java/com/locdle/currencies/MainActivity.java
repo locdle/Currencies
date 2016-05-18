@@ -33,8 +33,6 @@ import java.util.Properties;
 
 //public class MainActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener {
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    //define members that correspond to Views in our layout
-    private Button mCalcButton;
     private TextView mConvertedTextView;
     private EditText mAmountEditText;
     private Spinner mForSpinner, mHomSpinner;
@@ -78,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
         //unpack ArrayList from the bundle and convert to array
+        @SuppressWarnings("unchecked")
         ArrayList<String> arrayList = ((ArrayList<String>)
                 getIntent().getSerializableExtra(SplashActivity.KEY_ARRAYLIST));
         Collections.sort(arrayList);
@@ -86,11 +85,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //assign references to our Views;
         mConvertedTextView = (TextView) findViewById(R.id.txt_converted);
         mAmountEditText = (EditText) findViewById(R.id.edt_amount);
-        mCalcButton = (Button) findViewById(R.id.btn_calc);
+        Button mCalcButton = (Button) findViewById(R.id.btn_calc);
         mForSpinner = (Spinner) findViewById(R.id.spn_for);
         mHomSpinner = (Spinner) findViewById(R.id.spn_hom);
         //controller: mediates model and view
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
 
                 //context
                 this,
@@ -149,10 +148,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 (ConnectivityManager)
                         getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
-            return true;
-        }
-        return false;
+        return networkInfo != null && networkInfo.isConnectedOrConnecting();
+//        if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
+//            return true;
+//        }
+//        return false;
     }
     private void launchBrowser(String strUri) {
         if (isOnline()) {
@@ -318,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 mConvertedTextView.setText("");
                 e.printStackTrace();
             }
-            mConvertedTextView.setText(DECIMAL_FORMAT.format(dCalculated) + " " + strHomCode);
+            mConvertedTextView.setText(String.format("%s %s", DECIMAL_FORMAT.format(dCalculated), strHomCode));
             progressDialog.dismiss();
 
             //for testing
